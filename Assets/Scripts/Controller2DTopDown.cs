@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Controller2DTopDown : MonoBehaviour
+namespace KID
 {
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// 2D Top Down 類型控制器
+    /// </summary>
+    public class Controller2DTopDown : MonoBehaviour
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
