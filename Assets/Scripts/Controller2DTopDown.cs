@@ -37,11 +37,18 @@ namespace KID
             rig.velocity = new Vector2(h , v) * speed;
 
             UpdateAnimation(h, v);
+            Flip(h);
         }
 
         private void UpdateAnimation(float h, float v)
         {
             ani.SetBool(parWalk, h != 0 || v != 0);
+        }
+
+        private void Flip(float h)
+        {
+            if (Mathf.Abs(h) < 0.1f) return;
+            transform.eulerAngles = new Vector2(0, h > 0 ? 0 : 180);
         }
     }
 }
