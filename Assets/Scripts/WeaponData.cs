@@ -10,6 +10,8 @@ namespace KID
     {
         [Header("武器物件")]
         public GameObject prefabWeapon;
+        [Header("是否根據角色方向移動")]
+        public bool withCharacterDirection;
         [Header("武器等級資料")]
         public WeaponLevelData[] weaponLevelDatas;
     }

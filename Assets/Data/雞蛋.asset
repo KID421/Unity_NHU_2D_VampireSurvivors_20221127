@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ba4be18a46194443bb2155b7c82f4e1, type: 3}
+  m_Name: "\u96DE\u86CB"
+  m_EditorClassIdentifier: 
+  prefabWeapon: {fileID: 5232786687995516949, guid: 0238c5d5ba34e244ebe7d9e3f8261b8e, type: 3}
+  withCharacterDirection: 1
+  weaponLevelDatas:
+  - intervalSpawn: 3.5
+    attack: 70
+    weaponObjects:
+    - speed: {x: 500, y: 50}
+      pointSpawn: {x: 0.5, y: 0.5, z: 0}
+    - speed: {x: 500, y: 20}
+      pointSpawn: {x: 0.6, y: 0.3, z: 0}

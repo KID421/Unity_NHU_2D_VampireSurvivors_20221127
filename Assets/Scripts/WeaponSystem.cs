@@ -35,11 +35,16 @@ namespace KID
                 // Quaternion.identity 零角度
                 GameObject tempWeapon = Instantiate(
                     weaponData.prefabWeapon,
-                    transform.position + weaponObject[i].pointSpawn,
+                    transform.position + transform.TransformDirection(weaponObject[i].pointSpawn),
                     Quaternion.identity);
 
+                Vector2 speedMove;
+
+                if (weaponData.withCharacterDirection) speedMove = transform.right * weaponObject[i].speed;
+                else speedMove = weaponObject[i].speed;
+
                 // 生成物件.取得元件<2D 剛體>().添加推力(武器資料的武器速度)
-                tempWeapon.GetComponent<Rigidbody2D>().AddForce(weaponObject[i].speed);
+                tempWeapon.GetComponent<Rigidbody2D>().AddForce(speedMove);
             }
         }
     }

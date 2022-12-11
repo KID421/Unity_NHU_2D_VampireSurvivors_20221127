@@ -19,14 +19,14 @@ MonoBehaviour:
     weaponObjects:
     - speed: {x: 0, y: 450}
       pointSpawn: {x: 0, y: 0.8, z: 0}
-  - intervalSpawn: 2.8
+  - intervalSpawn: 2
     attack: 80
     weaponObjects:
     - speed: {x: -10, y: 450}
       pointSpawn: {x: -0.5, y: 0.8, z: 0}
     - speed: {x: 10, y: 450}
       pointSpawn: {x: 0.5, y: 0.8, z: 0}
-  - intervalSpawn: 0.5
+  - intervalSpawn: 1
     attack: 120
     weaponObjects:
     - speed: {x: -15, y: 460}
