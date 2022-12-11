@@ -9,10 +9,16 @@ namespace KID
     {
         [SerializeField, Header("武器資料")]
         private WeaponData weaponData;
+        [SerializeField]
+        private int level;
+
+        private WeaponLevelData weaponLevel => weaponData.weaponLevelDatas[level];
 
         private void Awake()
         {
-            SpawnWeapon();
+            // SpawnWeapon();
+            // 重複呼叫(方法名稱，延遲時間，重複頻率)
+            InvokeRepeating("SpawnWeapon", 0, weaponLevel.intervalSpawn);
         }
 
         /// <summary>
@@ -20,16 +26,21 @@ namespace KID
         /// </summary>
         private void SpawnWeapon()
         {
-            // 生成物件 = 生成(物件，座標，角度)
-            // transform.position 此物件的座標
-            // Quaternion.identity 零角度
-            GameObject tempWeapon = Instantiate(
-                weaponData.prefabWeapon,
-                transform.position + weaponData.weaponObjects[0].pointSpawn,
-                Quaternion.identity);
+            WeaponObject[] weaponObject = weaponLevel.weaponObjects;
 
-            // 生成物件.取得元件<2D 剛體>().添加推力(武器資料的武器速度)
-            tempWeapon.GetComponent<Rigidbody2D>().AddForce(weaponData.weaponObjects[0].speed);
+            for (int i = 0; i < weaponObject.Length; i++)
+            {
+                // 生成物件 = 生成(物件，座標，角度)
+                // transform.position 此物件的座標
+                // Quaternion.identity 零角度
+                GameObject tempWeapon = Instantiate(
+                    weaponData.prefabWeapon,
+                    transform.position + weaponObject[i].pointSpawn,
+                    Quaternion.identity);
+
+                // 生成物件.取得元件<2D 剛體>().添加推力(武器資料的武器速度)
+                tempWeapon.GetComponent<Rigidbody2D>().AddForce(weaponObject[i].speed);
+            }
         }
     }
 }

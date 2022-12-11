@@ -13,8 +13,25 @@ MonoBehaviour:
   m_Name: "\u65A7\u982D"
   m_EditorClassIdentifier: 
   prefabWeapon: {fileID: 4582370582315155564, guid: 8a7ab63606a5cd04689c13ae8c1d9973, type: 3}
-  intervalSpawn: 3
-  attack: 50
-  weaponObjects:
-  - speed: {x: 0, y: 300}
-    pointSpawn: {x: 0, y: 2, z: 0}
+  weaponLevelDatas:
+  - intervalSpawn: 3
+    attack: 50
+    weaponObjects:
+    - speed: {x: 0, y: 450}
+      pointSpawn: {x: 0, y: 0.8, z: 0}
+  - intervalSpawn: 2.8
+    attack: 80
+    weaponObjects:
+    - speed: {x: -10, y: 450}
+      pointSpawn: {x: -0.5, y: 0.8, z: 0}
+    - speed: {x: 10, y: 450}
+      pointSpawn: {x: 0.5, y: 0.8, z: 0}
+  - intervalSpawn: 0.5
+    attack: 120
+    weaponObjects:
+    - speed: {x: -15, y: 460}
+      pointSpawn: {x: -1, y: 0.5, z: 0}
+    - speed: {x: 0, y: 480}
+      pointSpawn: {x: 0, y: 0.8, z: 0}
+    - speed: {x: 15, y: 460}
+      pointSpawn: {x: 1, y: 0.5, z: 0}

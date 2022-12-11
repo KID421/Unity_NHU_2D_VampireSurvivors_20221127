@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4582370582315155561}
   - component: {fileID: 4582370582315155562}
   - component: {fileID: 4582370582315155575}
+  - component: {fileID: -199884763377202268}
   m_Layer: 0
   m_Name: "\u65A7\u982D"
   m_TagString: Untagged
@@ -123,3 +124,14 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
+--- !u!247 &-199884763377202268
+ConstantForce2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4582370582315155564}
+  m_Enabled: 1
+  m_Force: {x: 0, y: 0}
+  m_RelativeForce: {x: 0, y: 0}
+  m_Torque: -60
