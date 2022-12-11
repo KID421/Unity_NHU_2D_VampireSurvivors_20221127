@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba4be18a46194443bb2155b7c82f4e1, type: 3}
   m_Name: "\u65A7\u982D"
   m_EditorClassIdentifier: 
+  prefabWeapon: {fileID: 4582370582315155564, guid: 8a7ab63606a5cd04689c13ae8c1d9973, type: 3}
+  intervalSpawn: 3
   attack: 50
   weaponObjects:
   - speed: {x: 0, y: 10}
