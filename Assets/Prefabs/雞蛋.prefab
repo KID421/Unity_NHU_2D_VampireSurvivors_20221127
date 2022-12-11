@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5121174974182761542}
   - component: {fileID: 8038394579445306276}
   - component: {fileID: 4002231346459418647}
+  - component: {fileID: 6577606648314714112}
   m_Layer: 3
   m_Name: "\u96DE\u86CB"
   m_TagString: Untagged
@@ -123,3 +124,14 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
+--- !u!247 &6577606648314714112
+ConstantForce2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5232786687995516949}
+  m_Enabled: 1
+  m_Force: {x: 0, y: 0}
+  m_RelativeForce: {x: 0, y: 0}
+  m_Torque: 30
