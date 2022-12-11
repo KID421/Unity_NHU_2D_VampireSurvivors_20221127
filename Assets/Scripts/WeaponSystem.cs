@@ -1,13 +1,13 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 namespace KID
 {
     /// <summary>
-    /// ªZ¾¹¨t²Î
+    /// æ­¦å™¨ç³»çµ±
     /// </summary>
     public class WeaponSystem : MonoBehaviour
     {
-        [SerializeField, Header("ªZ¾¹¸ê®Æ")]
+        [SerializeField, Header("æ­¦å™¨è³‡æ–™")]
         private WeaponData weaponData;
         [SerializeField]
         private int level;
@@ -17,12 +17,12 @@ namespace KID
         private void Awake()
         {
             // SpawnWeapon();
-            // ­«½Æ©I¥s(¤èªk¦WºÙ¡A©µ¿ğ®É¶¡¡A­«½ÆÀW²v)
+            // é‡è¤‡å‘¼å«(æ–¹æ³•åç¨±ï¼Œå»¶é²æ™‚é–“ï¼Œé‡è¤‡é »ç‡)
             InvokeRepeating("SpawnWeapon", 0, weaponLevel.intervalSpawn);
         }
 
         /// <summary>
-        /// ¥Í¦¨ªZ¾¹
+        /// ç”Ÿæˆæ­¦å™¨
         /// </summary>
         private void SpawnWeapon()
         {
@@ -30,9 +30,9 @@ namespace KID
 
             for (int i = 0; i < weaponObject.Length; i++)
             {
-                // ¥Í¦¨ª«¥ó = ¥Í¦¨(ª«¥ó¡A®y¼Ğ¡A¨¤«×)
-                // transform.position ¦¹ª«¥óªº®y¼Ğ
-                // Quaternion.identity ¹s¨¤«×
+                // ç”Ÿæˆç‰©ä»¶ = ç”Ÿæˆ(ç‰©ä»¶ï¼Œåº§æ¨™ï¼Œè§’åº¦)
+                // transform.position æ­¤ç‰©ä»¶çš„åº§æ¨™
+                // Quaternion.identity é›¶è§’åº¦
                 GameObject tempWeapon = Instantiate(
                     weaponData.prefabWeapon,
                     transform.position + transform.TransformDirection(weaponObject[i].pointSpawn),
@@ -43,7 +43,7 @@ namespace KID
                 if (weaponData.withCharacterDirection) speedMove = transform.right * weaponObject[i].speed;
                 else speedMove = weaponObject[i].speed;
 
-                // ¥Í¦¨ª«¥ó.¨ú±o¤¸¥ó<2D ­èÅé>().²K¥[±À¤O(ªZ¾¹¸ê®ÆªºªZ¾¹³t«×)
+                // ç”Ÿæˆç‰©ä»¶.å–å¾—å…ƒä»¶<2D å‰›é«”>().æ·»åŠ æ¨åŠ›(æ­¦å™¨è³‡æ–™çš„æ­¦å™¨é€Ÿåº¦)
                 tempWeapon.GetComponent<Rigidbody2D>().AddForce(speedMove);
             }
         }
