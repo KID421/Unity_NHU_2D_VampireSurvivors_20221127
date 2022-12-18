@@ -32,7 +32,7 @@ MonoBehaviour:
     - speed: {x: 500, y: -50}
       pointSpawn: {x: 0.5, y: -1, z: 0}
   - intervalSpawn: 1.5
-    attack: 150
+    attack: 200
     weaponObjects:
     - speed: {x: 500, y: 150}
       pointSpawn: {x: 0.4, y: 3.5, z: 0}

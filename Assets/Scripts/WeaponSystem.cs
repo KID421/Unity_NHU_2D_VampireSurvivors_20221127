@@ -45,6 +45,9 @@ namespace KID
 
                 // 生成物件.取得元件<2D 剛體>().添加推力(武器資料的武器速度)
                 tempWeapon.GetComponent<Rigidbody2D>().AddForce(speedMove);
+
+                
+                tempWeapon.AddComponent<WeaponAttack>().attack = weaponLevel.attack;
             }
         }
     }
