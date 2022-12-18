@@ -18,16 +18,16 @@ MonoBehaviour:
   - intervalSpawn: 3.5
     attack: 70
     weaponObjects:
-    - speed: {x: 500, y: 50}
-      pointSpawn: {x: 0.5, y: 0.5, z: 0}
-    - speed: {x: 500, y: 20}
-      pointSpawn: {x: 0.6, y: 0.3, z: 0}
+    - speed: {x: 520, y: 50}
+      pointSpawn: {x: 0.5, y: 1, z: 0}
+    - speed: {x: 500, y: -20}
+      pointSpawn: {x: 0.6, y: 0, z: 0}
   - intervalSpawn: 1.5
     attack: 150
     weaponObjects:
     - speed: {x: 500, y: 100}
       pointSpawn: {x: 0.5, y: 2, z: 0}
-    - speed: {x: 500, y: 35}
+    - speed: {x: 500, y: 50}
       pointSpawn: {x: 0.6, y: 0.5, z: 0}
     - speed: {x: 500, y: -50}
       pointSpawn: {x: 0.5, y: -1, z: 0}
@@ -38,7 +38,7 @@ MonoBehaviour:
       pointSpawn: {x: 0.4, y: 3.5, z: 0}
     - speed: {x: 500, y: 100}
       pointSpawn: {x: 0.5, y: 2, z: 0}
-    - speed: {x: 500, y: 35}
+    - speed: {x: 500, y: 50}
       pointSpawn: {x: 0.6, y: 0.5, z: 0}
     - speed: {x: 500, y: -50}
       pointSpawn: {x: 0.5, y: -1, z: 0}
