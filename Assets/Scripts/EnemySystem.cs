@@ -1,25 +1,25 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 namespace KID
 {
     /// <summary>
-    /// ¼Ä¤H¨t²Î¡G°lÂÜª±®a
+    /// æ•µäººç³»çµ±ï¼šè¿½è¹¤ç©å®¶
     /// </summary>
     public class EnemySystem : MonoBehaviour
     {
-        [SerializeField, Header("²¾°Ê³t«×"), Range(0, 10)]
+        [SerializeField, Header("ç§»å‹•é€Ÿåº¦"), Range(0, 10)]
         private float speed = 3.5f;
-        [SerializeField, Header("°±¤î¶ZÂ÷"), Range(0, 10)]
+        [SerializeField, Header("åœæ­¢è·é›¢"), Range(0, 10)]
         private float stopDistance = 1.5f;
 
-        private string nameTarget = "®g¤â";
+        private string nameTarget = "å°„æ‰‹";
         private Transform traTarget;
 
-        // Ã¸»s¹Ï¥Ü¡G¶È¦b Unity ½s¿è¾¹¤ºÅã¥Ü¡A»²§U¥Î
+        // ç¹ªè£½åœ–ç¤ºï¼šåƒ…åœ¨ Unity ç·¨è¼¯å™¨å…§é¡¯ç¤ºï¼Œè¼”åŠ©ç”¨
         private void OnDrawGizmos()
         {
-            Gizmos.color = new Color(0.8f, 0.1f, 0.1f, 0.3f);       // ¹Ï¥ÜÃC¦â
-            Gizmos.DrawSphere(transform.position, stopDistance);    // Ã¸»s²yÅé¹Ï¥Ü
+            Gizmos.color = new Color(0.8f, 0.1f, 0.1f, 0.3f);       // åœ–ç¤ºé¡è‰²
+            Gizmos.DrawSphere(transform.position, stopDistance);    // ç¹ªè£½çƒé«”åœ–ç¤º
         }
 
         private void Awake()
@@ -33,7 +33,7 @@ namespace KID
         }
 
         /// <summary>
-        /// °lÂÜ
+        /// è¿½è¹¤
         /// </summary>
         private void Track()
         {
@@ -42,7 +42,7 @@ namespace KID
             
             Flip(posCurrent.x, posTarget.x);
 
-            // ¶ZÂ÷¤p©ó°±¤î¶ZÂ÷ ´N ¸õ¥X¤£°lÂÜ
+            // è·é›¢å°æ–¼åœæ­¢è·é›¢ å°± è·³å‡ºä¸è¿½è¹¤
             if (Vector3.Distance(posCurrent, posTarget) <= stopDistance) return;
 
             posCurrent = Vector3.MoveTowards(posCurrent, posTarget, speed * Time.deltaTime);
@@ -50,10 +50,10 @@ namespace KID
         }
 
         /// <summary>
-        /// Â½­±
+        /// ç¿»é¢
         /// </summary>
-        /// <param name="xCurrent">¦¹ª«¥óªº X</param>
-        /// <param name="xTarget">¥Ø¼Ğª«¥óªº X</param>
+        /// <param name="xCurrent">æ­¤ç‰©ä»¶çš„ X</param>
+        /// <param name="xTarget">ç›®æ¨™ç‰©ä»¶çš„ X</param>
         private void Flip(float xCurrent, float xTarget)
         {
             float angle = xCurrent > xTarget ? 0 : 180;
