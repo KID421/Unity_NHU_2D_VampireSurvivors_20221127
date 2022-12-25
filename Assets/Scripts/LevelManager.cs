@@ -20,7 +20,7 @@ namespace KID
         private int lv = 1;
         private float expCurrent;
         private Image imgExp;
-        private TextMeshProUGUI textExp;
+        private TextMeshProUGUI textLv;
 
         [SerializeField]
         private float[] expNeeds;
@@ -30,7 +30,7 @@ namespace KID
         private void Awake()
         {
             imgExp = GameObject.Find("圖片經驗值").GetComponent<Image>();
-            textExp = GameObject.Find("文字等級").GetComponent<TextMeshProUGUI>();
+            textLv = GameObject.Find("文字等級").GetComponent<TextMeshProUGUI>();
         }
 
         private void OnDrawGizmos()
@@ -63,19 +63,24 @@ namespace KID
         private void GetExpObject()
         {
             // 碰撞物件 = 2D 物理 覆蓋圓形範圍(本物件座標，取得經驗值半徑，取得經驗值圖層)
-            Collider2D hit = Physics2D.OverlapCircle(transform.position, getExpRadius, layerExp);
+            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, getExpRadius, layerExp);
 
-            // 如果 碰撞物件存在
-            if (hit)
+            for (int i = 0; i < hits.Length; i++)
             {
-                // 座標 = 二維.向前移動(碰撞物件的座標，本物件座標，速度 * 一幀的時間)
-                Vector2 pos = Vector2.MoveTowards(
-                    hit.transform.position, transform.position, getExpSpeed * Time.deltaTime);
+                Collider2D hit = hits[i];
 
-                // 碰撞物件 的 座標 = 座標
-                hit.transform.position = pos;
+                // 如果 碰撞物件存在
+                if (hit)
+                {
+                    // 座標 = 二維.向前移動(碰撞物件的座標，本物件座標，速度 * 一幀的時間)
+                    Vector2 pos = Vector2.MoveTowards(
+                        hit.transform.position, transform.position, getExpSpeed * Time.deltaTime);
 
-                UpdateExp(hit);
+                    // 碰撞物件 的 座標 = 座標
+                    hit.transform.position = pos;
+
+                    UpdateExp(hit);
+                }
             }
         }
 
@@ -89,12 +94,20 @@ namespace KID
 
             if (dis <= 0.5f)
             {
-                expCurrent += hit.GetComponent<ExpManager>().exp;
+                expCurrent += hit.GetComponent<ExpManager>().exp;   // 累加經驗
 
-                float expNeed = expNeeds[lv - 1];
-                imgExp.fillAmount = expCurrent / expNeed;
+                float expNeed = expNeeds[lv - 1];                   // 取得當前等級的經驗需求
 
-                Destroy(hit.gameObject);
+                if (expCurrent >= expNeed)                          // 如果 當前經驗值 >= 經驗值需求 (代表升級)
+                {
+                    expCurrent -= expNeed;                          // 將多餘的經驗還給玩家
+                    lv++;                                           // 升級
+                    textLv.text = "Lv " + lv;                       // 更新等級介面
+                }
+
+                imgExp.fillAmount = expCurrent / expNeed;           // 圖片填滿長度 = 當前經驗 / 經驗需求
+
+                Destroy(hit.gameObject);                            // 刪除 經驗值物件
             }
         }
         #endregion
