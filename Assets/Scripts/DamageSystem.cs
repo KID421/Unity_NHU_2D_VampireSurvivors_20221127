@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 namespace KID
 {
@@ -21,6 +22,10 @@ namespace KID
         private LayerMask layerDamage;
         [SerializeField, Header("受傷無敵時間"), Range(0, 1)]
         private float timeInvisiable = 0.2f;
+        [SerializeField, Header("經驗值"), Range(0, 5000)]
+        private float exp;
+        [SerializeField]
+        private GameObject prefabExp;
 
         private float timer;
         private bool isDamage;
@@ -55,15 +60,32 @@ namespace KID
                 // 如果 尚未受傷 再生成 傷害值物件
                 if (!isDamage)
                 {
+                    float attack = hit.GetComponent<WeaponAttack>().attack;
+                    hp -= attack;
+                    if (hp <= 0) Dead();
+
                     // 設定為已受傷
                     isDamage = true;
-                    // 生成傷害值物件
-                    Instantiate(
+                    // 暫存傷害值物件 = 生成傷害值物件
+                    GameObject tempDamage = Instantiate(
                         prefabDamage, 
                         transform.position + transform.TransformDirection(offsetDamagePrefab),  
                         Quaternion.identity);
+
+                    // 取得 暫存傷害值物件 第一個子物件 (文字傷害值) 並更新為 攻擊力
+                    tempDamage.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = attack.ToString();
                 }
             }
+        }
+
+        /// <summary>
+        /// 死亡
+        /// </summary>
+        private void Dead()
+        {
+            GameObject tempExp = Instantiate(prefabExp, transform.position, Quaternion.identity);
+            tempExp.GetComponent<ExpManager>().exp = exp;
+            Destroy(gameObject);
         }
 
         /// <summary>
