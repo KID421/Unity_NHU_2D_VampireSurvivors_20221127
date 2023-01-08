@@ -2,6 +2,7 @@
 
 namespace KID
 {
+    [DefaultExecutionOrder(200)]
     /// <summary>
     /// 敵人系統：追蹤玩家
     /// </summary>
@@ -25,6 +26,7 @@ namespace KID
         private void Awake()
         {
             traTarget = GameObject.Find(nameTarget).transform;
+            LevelManager.instance.onLevelup += WhenPlayerLevelUp;
         }
 
         private void Update()
@@ -58,6 +60,14 @@ namespace KID
         {
             float angle = xCurrent > xTarget ? 0 : 180;
             transform.eulerAngles = new Vector3(0, angle, 0);
+        }
+
+        /// <summary>
+        /// 當玩家升級時
+        /// </summary>
+        private void WhenPlayerLevelUp()
+        {
+            if(this) enabled = false;
         }
     }
 }

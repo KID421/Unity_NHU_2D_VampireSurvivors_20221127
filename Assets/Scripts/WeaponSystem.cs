@@ -2,6 +2,7 @@
 
 namespace KID
 {
+    [DefaultExecutionOrder(200)]
     /// <summary>
     /// 武器系統
     /// </summary>
@@ -19,6 +20,7 @@ namespace KID
             // SpawnWeapon();
             // 重複呼叫(方法名稱，延遲時間，重複頻率)
             InvokeRepeating("SpawnWeapon", 0, weaponLevel.intervalSpawn);
+            LevelManager.instance.onLevelup += WhenPlayerLevelUp;
         }
 
         /// <summary>
@@ -48,6 +50,18 @@ namespace KID
 
                 
                 tempWeapon.AddComponent<WeaponAttack>().attack = weaponLevel.attack;
+            }
+        }
+
+        /// <summary>
+        /// 當玩家升級時
+        /// </summary>
+        private void WhenPlayerLevelUp()
+        {
+            if (this)
+            {
+                CancelInvoke();
+                enabled = false;
             }
         }
     }

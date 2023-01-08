@@ -4,12 +4,18 @@ using UnityEngine.UI;
 
 namespace KID
 {
+    [DefaultExecutionOrder(100)]
     /// <summary>
     /// 等級管理器
     /// </summary>
     public class LevelManager : MonoBehaviour
     {
         #region 資料
+        public static LevelManager instance;
+
+        public delegate void LevelUp();     // 委派
+        public event LevelUp onLevelup;     // 事件
+
         [SerializeField, Header("吸取經驗值半徑")]
         private float getExpRadius = 3.5f;
         [SerializeField, Header("吸取經驗值速度")]
@@ -24,13 +30,21 @@ namespace KID
 
         [SerializeField]
         private float[] expNeeds;
+
+        /// <summary>
+        /// 升級技能選取介面
+        /// </summary>
+        private Animator aniUpdateLevelAndChooseSkill;
         #endregion
 
         #region 事件
         private void Awake()
         {
+            instance = this;
+
             imgExp = GameObject.Find("圖片經驗值").GetComponent<Image>();
             textLv = GameObject.Find("文字等級").GetComponent<TextMeshProUGUI>();
+            aniUpdateLevelAndChooseSkill = GameObject.Find("升級技能選取介面").GetComponent<Animator>();
         }
 
         private void OnDrawGizmos()
@@ -101,14 +115,24 @@ namespace KID
                 if (expCurrent >= expNeed)                          // 如果 當前經驗值 >= 經驗值需求 (代表升級)
                 {
                     expCurrent -= expNeed;                          // 將多餘的經驗還給玩家
-                    lv++;                                           // 升級
-                    textLv.text = "Lv " + lv;                       // 更新等級介面
+                    UpdateLevel();
                 }
 
                 imgExp.fillAmount = expCurrent / expNeed;           // 圖片填滿長度 = 當前經驗 / 經驗需求
 
                 Destroy(hit.gameObject);                            // 刪除 經驗值物件
             }
+        }
+
+        /// <summary>
+        /// 升級
+        /// </summary>
+        private void UpdateLevel()
+        {
+            lv++;                                           // 升級
+            textLv.text = "Lv " + lv;                       // 更新等級介面
+            aniUpdateLevelAndChooseSkill.enabled = true;    // 啟動升級介面動畫
+            onLevelup();                                    // 觸發事件
         }
         #endregion
     }

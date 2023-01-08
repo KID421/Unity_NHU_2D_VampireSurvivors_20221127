@@ -2,6 +2,7 @@
 
 namespace KID
 {
+    [DefaultExecutionOrder(200)]
     /// <summary>
     /// 2D Top Down 類型控制器
     /// </summary>
@@ -19,6 +20,7 @@ namespace KID
         {
             ani = GetComponent<Animator>();
             rig = GetComponent<Rigidbody2D>();
+            LevelManager.instance.onLevelup += WhenPlayerLevelUp;
         }
 
         // 更新事件：約 60FPS
@@ -49,6 +51,14 @@ namespace KID
         {
             if (Mathf.Abs(h) < 0.1f) return;
             transform.eulerAngles = new Vector2(0, h > 0 ? 0 : 180);
+        }
+
+        /// <summary>
+        /// 當玩家升級時
+        /// </summary>
+        private void WhenPlayerLevelUp()
+        {
+            if (this) enabled = false;
         }
     }
 }
